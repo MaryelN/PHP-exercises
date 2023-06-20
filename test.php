@@ -18,7 +18,7 @@ $password = "password";
 $sql = "SELECT * FROM `users` WHERE `username` =:username AND `password` =:pass";
 
 //Preparer
-$requete = $db->prepare($sql);
+$requete = $pdo->prepare($sql);
 
 //Injecter les valeurs "binValue"
 $requete->bindParam(":username", $username, PDO::PARAM_STR);

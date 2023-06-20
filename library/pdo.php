@@ -11,15 +11,15 @@
     // Se connecter à la base de façon securisé
     try{
       //Creer un instance PDO
-      $db = new PDO($dsn, DBUSER, DBPASS);
+      $pdo = new PDO($dsn, DBUSER, DBPASS);
 
       echo "On est connectés";
 
       // S'assurer d'envoyer les données en UTF8
-      $db->exec("SET NAMES utf8");
+      $pdo->exec("SET NAMES utf8");
 
       //Definir le mode "fetch" par défaut
-      $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+      $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
     } catch(PDOException $e){
       die($e->getMessage());
@@ -30,7 +30,7 @@
     $sql = "SELECT * FROM `users`";
 
     //On exécute directement la requête
-    $requete = $db->query($sql);
+    $requete = $pdo->query($sql);
 
     //récupérer les données (fetch ou fetchAll)
     $user = $requete->fetchAll();
@@ -46,7 +46,7 @@
 
     //Modifier un utilisateur
     $sql = "UPDATE `users` SET `password` = 'password' WHERE `id` = 5";
-    $requete = $db->query($sql);
+    $requete = $pdo->query($sql);
 
     //Supprimer des utilisateurs ATTENTION à ajouter WHERE!
     $sql = "DELETE FROM `users` WHERE `id` > 5";
